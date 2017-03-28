@@ -17,7 +17,7 @@ var books = [{
 				genre: 'Fantasy',
 				author: 'Scott Paulsen',
 				read: true
-			}]
+			}];
 
 
 var router = function (nav) {
@@ -36,6 +36,6 @@ var router = function (nav) {
 		});
 
 	return adminRouter;
-}
+};
 
 module.exports = router;
