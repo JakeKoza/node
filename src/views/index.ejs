@@ -61,7 +61,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1>Storystrap
+        <h1>Books Read
           <p class="lead"></p>
         </h1>
       </div>
@@ -102,15 +102,35 @@
           <!--/stories-->
          <div class="row">    
             <br>
-            <div class="col-md-2 col-sm-3 text-center">
-				Sign In
+			<div class="col-md-2 col-sm-3"></div>			
+            <div class="col-md-2 col-sm-3">
+				<h3>Sign In</h3>
+				<form name="signInForm" action="/auth/signIn" method="post">
+                    <div class="form-group">
+                        <label for"userName">Username:</label>
+                        <input name="userName" id="userName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input name="password" id="password" type="password" class="form-control">
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Sign In">
+                </form>
+
             </div>
-            <div class="col-md-10 col-sm-9">
-				Sign Up
+			<div class="col-md-2 col-sm-3"></div>
+            <div class="col-md-2 col-sm-3">
+				<h3>Sign Up</h3>
 				<form name="signUpForm" action="/auth/signUp" method="post">
-					<input name="userName" id="userName">
-					<input name="password" id="password" type="password">
-					<input type="submit" value="Sign Up">
+					<div class="form-group">
+						<label for"userName">Username:</label>
+						<input name="userName" id="userName" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input name="password" id="password" type="password" class="form-control">
+					</div>
+					<input class="btn btn-default" type="submit" value="Sign Up">
 				</form>
             </div>
           </div>

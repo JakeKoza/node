@@ -6,6 +6,7 @@ var books = [{
 				title: 'Life on the Mississippi',
 				genre: 'History',
 				author: 'Mark Twain',
+				bookId: 99152,
 				read: false
 			},{
 				title: 'Childhood',
@@ -15,26 +16,29 @@ var books = [{
 			},{
 				title: 'Brisinger',
 				genre: 'Fantasy',
-				author: 'Scott Paulsen',
+				author: 'Christopher Paolini',
+				bookId: 2248573,
 				read: true
 			}];
 
 
 var router = function (nav) {
-
+	adminRouter.use(function(req, res, next){
+		if(!req.user){
+			res.redirect('/');
+		}
+		next();
+	});
+	var bookService = require('../services/goodreadsService')();
+	var bookController = require('../controllers/bookController')(bookService, nav);
 	adminRouter.route('/addBooks')
-		.get(function (req, res){
-			var url = 'mongodb://localhost:27017/libraryApp';
-			mongodb.connect(url, function (err, db){
-				var collection = db.collection('books');
-				collection.insertMany(books, function(err, results){
-					res.send(results);
-					db.close();
-				});
-			});
-			//res.send('inserting books');
-		});
-
+		.get(bookController.bulkLoad);
+	adminRouter.route('/addBook')
+		.get(function(req, res){
+			res.render('addBook', {title: 'Add A Book',
+                            nav: nav});
+		})
+		.post(bookController.addOneBook);
 	return adminRouter;
 };
 
